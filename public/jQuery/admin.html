@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost/admin -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	
+		<script src="./admin_files/jquery-1.10.2.js"></script>
+  		<script src="./admin_files/jquery-ui-1.10.3.custom.js"></script>
+  		<link rel="stylesheet" href="http://localhost/jQuery/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.css">
+  		<link rel="stylesheet" href="http://localhost/styles.css">
+		<script type="text/javascript">
+		  	$(function() {
+		  		var mokjangName = $( "#mokjangName" );
+		  		var mokjaName = $( "#mokjaName" );
+		  		var mokjaId = $( "#mokjaId" );
+		  		var groupName = $( "#groupName" );
+
+			    $( "#create-form" ).dialog({
+			      	autoOpen: false,
+			     	height: 400,
+			      	width: 300,
+			      	modal: true,
+			      	buttons: {
+				        "확인": function() {
+							$.post("http://localhost/admin/add-mokjang", 
+								{ 
+									mokjangName: mokjangName.val(), 
+									mokjaName: mokjaName.val(),
+									mokjaId: mokjaId.val(),
+									groupName: groupName.val()
+								}, 
+								function(data) {
+									console.log("got this: %s", data);
+									if(data.status == true)
+									{
+
+										console.log("all good!");
+									}
+									else
+									{
+										console.log("oh... no good");
+									}
+								}
+							);
+							
+			            	$( this ).dialog( "close" );
+				         
+				        },
+				        "취소": function() {
+				          	$( this ).dialog( "close" );
+				        }
+			    	},
+			    	close: function() {
+
+			    	}
+				});
+			    	
+			    $( "#create-mokjang" )
+			    .button()
+			    .click(function() {
+			        $( "#create-form" ).dialog( "open" );
+			    });
+
+			    $( ".mokjang_box" )
+			    .button()
+			    .click(function() {
+			        $( "#dialog-form" ).dialog( "open" );
+			    });
+			});
+
+			$(function() {
+    			$( "#tabs" ).tabs();
+  			});
+
+  			
+  		</script>	
+	</head>
+
+	<body style="">
+		<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+	  		<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+	    		<li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tabs-1" aria-labelledby="ui-id-2" aria-selected="true"><a href="http://localhost/admin#tabs-1" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">목장관리</a></li>
+	    		<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-2" aria-labelledby="ui-id-3" aria-selected="false"><a href="http://localhost/admin#tabs-2" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">주간 보고</a></li>
+	  		</ul>
+	  		<div id="tabs-1" aria-labelledby="ui-id-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
+	  			<button id="create-mokjang" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">목장만들기</span></button>
+
+	  			
+
+				<p> 현재까지 등록되어있는 목장입니다. </p>
+				<div id="mokjang_container" class="center">
+											<div class="group_title"><b>크로스웨이</b></div>
+						<div class="group_border">
+							<div class="group_container">
+																	<button class="mokjang_box ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">
+										<div class="mokjang_name"><b>사랑</b></div>
+										<div class="mokja_name">이규해</div>
+									</span></button>
+															</div>
+						</div>
+						<div class="group_title"><b>예수사모</b></div>
+						<div class="group_border">
+														</div>
+						<div class="group_title"><b>코너스톤</b></div>
+						<div class="group_border">
+														</div>
+						<div class="group_title"><b>일반</b></div>
+						<div class="group_box_bottom">
+														</div>
+					</div>
+									</div>
+		  	<div id="tabs-2" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+	    		<p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+	  		</div>
+		</div>
+	
+
+
+
+				<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-describedby="create-form" aria-labelledby="ui-id-1" style="display: none; position: absolute;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-id-1" class="ui-dialog-title">새 목장 만들기</span><button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></div><div id="create-form" class="ui-dialog-content ui-widget-content">
+				  	<form>
+				  		<fieldset>
+					    	<label for="mokjangName"><b>목장이름:</b></label>
+					    	<input type="text" name="mokjangName" id="mokjangName" class="text ui-widget-content ui-corner-all">
+					    	<label for="mokjaName"><b>목자이름:</b></label>
+					    	<input type="text" name="mokjaName" id="mokjaName" value="" class="text ui-widget-content ui-corner-all">
+					    	<label for="mokjaId"><b>목자 교회 홈페이지 ID:</b></label>
+					    	<input type="text" name="mokjaId" id="mokjaId" value="" class="text ui-widget-content ui-corner-all">
+				  			<label for="groupName"><b>소속 부서:</b></label><br>
+							<select name="groupName" id="groupName">
+							 	<option value="crossway">크로스웨이</option>
+							  	<option value="jesuslove">예수사모</option>
+							  	<option value="cornerstone">코너스톤</option>
+							  	<option value="regular">일반</option>
+							</select>
+				  		</fieldset>
+				  	</form>
+				</div><div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"><div class="ui-dialog-buttonset"><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">확인</span></button><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">취소</span></button></div></div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div></div></body></html>

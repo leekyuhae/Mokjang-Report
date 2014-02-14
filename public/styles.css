@@ -1,0 +1,257 @@
+	<style>
+		* {
+			font-family: 'Droid Sans';
+		}
+		.ui-tabs {
+			font-size: 100%;
+			width: 550px;
+			-moz-box-shadow: 5px 5px 5px #888;
+			-webkit-box-shadow: 5px 5px 5px #888;
+			box-shadow: 5px 5px 5px #888;
+	  		background: #fff;
+		}
+		select {
+			width: 150px;
+			height: 30px;
+			padding: 2px;
+			font-size: 100%;
+			border-color: #9F9F9F;
+		}
+		div.admin-form {font-size: 100%;}
+		input.text { margin-bottom:12px; width:95%; padding: .4em; }
+	    fieldset { padding:0; border:0; margin-top:25px; }
+	    h1 { font-size: 1.2em; margin: .6em 0; }
+	    .ui-dialog .ui-state-error { padding: .3em; }
+	  	div#mokjang_container { 
+	  		font-size: 100%;
+	  		margin-left: auto;
+	  		margin-right: auto;
+	  		margin-top: 20px;
+	  	}
+	  	.no-registered-mokjang {
+	  		padding: 2px;
+	  	}
+	  	.group-box {
+	  		padding: 4px;
+	  		margin-top: 4px;
+	  		margin-bottom: 16px;
+	  	}
+	  	.group_title {
+	  		font-size: 100%;
+	  		
+	  		padding: 6px;
+	  		color: #4D4D4D ;
+	  		
+	  		text-align: center;
+
+	  		background: rgb(255,255,255); /* Old browsers */
+			background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+			background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+			background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Opera 12+ */
+			background: -ms-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* IE10+ */
+			background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+	  	}
+	  	.group_container {
+	  		display: inline-block;
+	  		padding: 4px;
+	  	}
+	  	.mokjang_box {
+	  		width: 90px;
+	  		height: 90px;
+	  		display: inline-block;
+	  		float: left;
+	  	}
+	  	.mokjang_name {
+	  		font-size: 110%;
+	  		padding: 4px;
+	  		text-align: center;
+	  	}
+	  	.mokja_name {
+	  		padding: 4px;
+	  		text-align: center;
+	  	}
+	  	#report-form-div {
+	  		font-size: 80%;	
+	  		font-family: 'Droid Sans';
+	  	}
+	  	#report-container {
+	  		width: 510px;
+	  		font-family: 'Droid Sans';
+	  		font-size: 120%;
+	  		padding: 20px;
+	  		border: 1px solid #B3B3B3; 
+	  		-moz-box-shadow: 5px 5px 5px #888;
+			-webkit-box-shadow: 5px 5px 5px #888;
+			box-shadow: 5px 5px 5px #888;
+	  		background: #fff;
+	  		display: inline-block;
+	  	}
+	  	.report-title {
+	  		color: #323232;
+	  		margin-bottom: 6px;
+	  		margin-right: 10px;
+	  		font-size: 140%;
+	  		display: inline-block;
+	  		text-shadow: #fff 0 1px 1px;
+	  	}
+	  	.report-time {
+	  		font-size: 90%;
+	  		color: #B26969;
+	  		text-shadow: #fff 0 1px 0;
+	  		margin-bottom: 5px;
+	  		display: inline-block;
+	  	}
+	  	.report-bar {
+	  		border-bottom: 2px solid #A84D4D;
+	  	}
+	  	.report-text-short {
+	  		width: 150px;
+	  	}
+	  	.report-item-box{
+	  		display: inline-block;
+	  	}
+	  	.add-margin-left-percent {
+	  		margin-left: 6%;
+	  	}
+	  	.ui-widget-content {
+	  		font-size: 100%;
+	  	}
+	  	.ui-datepicker {
+	  		font-size: 95%;
+	  		font-family: 'Droid Sans';
+	  	}
+	  	#participant-title{
+	  		margin-top: 12px;
+	  		margin-bottom: 10px;
+	  		font-size: 120%;
+	  	}
+	  	#participant-tool-box {
+	  		padding: 8px;
+	  		margin-left: 2%;
+	  		margin-right: 2%;
+	  		border-top: 1px dashed #A84D4D;
+	  		border-bottom: 1px dashed #A84D4D;
+	  	}
+	  	#participant-tool-text {
+	  		font-size: 100%;
+	  		padding: 4px; 	
+	  	}
+	  	.participant-button{
+	  		display:inline-block;
+	  		font-size: 90%;
+	  		margin-right: 5px;
+	  		margin-top: 5px;
+	  	}
+	  	#error-box {
+	  		font-family: 'Droid Sans';
+	  		font-size: 130%;
+	  		background: #B4B4B4;
+	  		display:inline-block;
+	  		padding: 20px;
+	  		border: 1px solid;
+	  	}
+	  	.radio-div-square {
+	  		display: inline-block;
+	  		margin-top: 5px;
+	  	}
+	  	.radio-text {
+	  		font-family: 'Droid Sans';
+	  		display: inline-block;
+	  		margin-left: 5px;
+	  		font-size: 98%;
+	  	}
+	  	.inline-block {
+	  		display: inline-block;
+	  	}
+	  	.marital-status-radio-box {
+	  		padding-left: 10px;
+	  		padding-top: 12px;
+	  		padding-bottom: 16px;
+	  		border-bottom: 1px dashed #323232;
+	  	}
+	  	#single-form-sex {
+	  		display: inline-block;
+	  	}
+	  	.add-margin-left-pixel {
+	  		margin-left: 10px;
+	  	}
+	  	#attended-mokone-info-text {
+	  		margin-top: 20px;
+	  		margin-bottom: 10px;;
+	  	}
+	  	#no-attended-mokone-info-text {
+	  		margin-top: 20px;
+	  		margin-bottom: 10px;;
+	  	}
+	  	.accordion {
+	  		margin-left: 10px;
+	  		margin-right: 10px;
+	  		margin-top: 5px;
+	  	}
+	  	.ui-accordion {
+	  		font-size: 98%;
+	  	}
+	  	.ui-accordion .ui-accordion-header {
+	  		padding: 6px;
+		}
+	  	.attendance-checkbox {
+	  		margin-left: 6px;
+	  		margin-right: 10%;
+	  	}
+	  	h3 {
+	  		font-weight: normal;
+	  	}
+	  	.attended-text {
+	  		margin-left: 5px;
+	  		color: #0066FF;
+	  	}
+	  	.pastor-visit-text {
+	  		margin-left: 5px;
+	  		color: #52CC52;
+	  	}
+	  	.news-text {
+	  		margin-left: 5px;
+	  		color: #FF9933;
+	  	}
+	  	.prayer-text {
+	  		margin-left: 5px;
+	  		color: #FF4545;
+	  	}
+	  	.choose-sex {
+	  		margin-top: 10px;
+	  		margin-left: 5px;
+	  		width: 70%;
+	  	}
+	  	.accordion-control-button {
+	  		background: #fff;
+	  	}
+	  	.accordion-delete-button {
+	  		background: #fff;
+	  	}
+	  	.accordion-checkbox-div {
+	  		margin-bottom: 15px;
+	  	}
+	  	.accordion-textarea-label {
+	  		margin-top: 10px;
+	  	}
+	  	textarea{
+	  		width:100%;
+	  		padding: 6px;
+	  		height: 15px;
+	  	}
+	  	#submit-button-box {
+	  		font-size: 90%;
+	  		display: inline-block;
+	  		position: relative;
+	  		left: 83%;
+	  	}
+	  	#end-bar {
+	  		height: 2px;
+	  		background: #A84D4D;
+	  		margin-top: 20px;
+	  		margin-bottom: 10px;
+	  	}
+	</style>
