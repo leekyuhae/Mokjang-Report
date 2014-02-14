@@ -187,7 +187,7 @@
 			var titleString = $('<div>' + mokjangName + '목장 모임 보고서</div>');
 			var mokoneCount = 0;
 
-			$.getJSON( "/report/user/mokones", 
+			$.getJSON( "user/mokones", 
 				{
 					mokjangName: mokjangName
 				}, function(data) {
@@ -276,7 +276,7 @@
 				  			console.log(husbandName, wifeName);
 				  		}
 				  		
-						$.post("{{url('user/add-mokone')}}", 
+						$.post("{{url('report/user/add-mokone')}}", 
 							{ 
 								status: status,
 								mokoneName: mokoneName,
@@ -325,7 +325,7 @@
 		      	buttons: {
 			        "확인": function() {
 			        	var id = $(this).data("id");
-				  		$.post( "/report/user/delete-mokone", {id: id}, function(data) {
+				  		$.post( "user/delete-mokone", {id: id}, function(data) {
 							if (data.result == 1) {
 								mokoneCount--;
 								if(mokoneCount == 0) {
@@ -397,7 +397,7 @@
 			</div>
 
 			<div id="report-form-div">
-			  	<form id="report-form" action="/report/user/process-form" method="post">
+			  	<form id="report-form" action="user/process-form" method="post">
 			  		<fieldset> 
 			  			<div class="report-item-box">
 					    	<label class="report-label" for="meetingDate">모임 날짜:</label>

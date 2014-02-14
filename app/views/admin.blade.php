@@ -37,7 +37,7 @@
 			}
 
 			$(document).ready(function() {
-				$.getJSON( "report/admin/mokjangs", function(data) {
+				$.getJSON( "admin/mokjangs", function(data) {
 					var groupMap = {};
 					groupMap["crossway"] = "false";
 					groupMap["jesuslove"] = "false";
