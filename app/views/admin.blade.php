@@ -16,7 +16,7 @@
 				    	var mokjaName;
 				    	var mokjaId;
 				    	var groupName;
-				    	$.get("{{url('admin/find-mokjang')}}",
+				    	$.get("{{url('report/admin/find-mokjang')}}",
 				    		{
 				    			mokjangName: mokjangName
 				    		},
@@ -37,7 +37,7 @@
 			}
 
 			$(document).ready(function() {
-				$.getJSON( "/admin/mokjangs", function(data) {
+				$.getJSON( "report/admin/mokjangs", function(data) {
 					var groupMap = {};
 					groupMap["crossway"] = "false";
 					groupMap["jesuslove"] = "false";
@@ -88,7 +88,7 @@
 					  		var mokjaId = $( "#mokjaId" );
 					  		var groupName = $( "#groupName" );
 
-							$.post("{{url('admin/add-mokjang')}}", 
+							$.post("{{url('report/admin/add-mokjang')}}", 
 								{ 
 									mokjangName: mokjangName.val(), 
 									mokjaName: mokjaName.val(),
