@@ -3,14 +3,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 	<head>
-		<script src="../jQuery/jquery-1.10.2.js"></script>
-		<script src="../dateJS/date-en-US.min.js"></script>
-  		<script src="../jQuery/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.js"></script>
-  		<script src="../iCheck/icheck.js"></script>
-  		<script src="../autosize/jquery.autosize.js"></script>
-  		<link rel="stylesheet" href="../iCheck/skins/minimal/minimal.css">
-  		<link rel="stylesheet" href="../jQuery/jquery-ui-1.10.4.custom/css/mokjang-theme/jquery-ui-1.10.4.custom.css">
-  		<link rel="stylesheet" href="../styles.css">
+		<script src="jQuery/jquery-1.10.2.js"></script>
+		<script src="dateJS/date-en-US.min.js"></script>
+  		<script src="jQuery/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.js"></script>
+  		<script src="iCheck/icheck.js"></script>
+  		<script src="autosize/jquery.autosize.js"></script>
+  		<link rel="stylesheet" href="iCheck/skins/minimal/minimal.css">
+  		<link rel="stylesheet" href="jQuery/jquery-ui-1.10.4.custom/css/mokjang-theme/jquery-ui-1.10.4.custom.css">
+  		<link rel="stylesheet" href="styles.css">
   		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans">
   	</head>
   	<script type="text/javascript">
