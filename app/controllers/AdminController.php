@@ -9,7 +9,7 @@ class AdminController extends BaseController {
 	}
 
 	public function getMokjangs() {
-		$results = DB::select('select * from mokjangs');
+		$results = DB::select('select * from report_mokjangs');
 
 		return Response::json(array('mokjangs' => $results));
 	}
@@ -25,7 +25,7 @@ class AdminController extends BaseController {
 		$result = null;
 
 		try {
-			$result = DB::insert('insert into mokjangs (mokjang_name, mokja_name, mokja_id, group_name) values (?, ?, ?, ?)', array($mokjangName, $mokjaName, $mokjaId, $groupName));
+			$result = DB::insert('insert into report_mokjangs (mokjang_name, mokja_name, mokja_id, group_name) values (?, ?, ?, ?)', array($mokjangName, $mokjaName, $mokjaId, $groupName));
 		} catch(Exception $e) {
 			$errorCode = $e->getCode();
 			Log::debug("Wait! Are you here?: $errorCode");
@@ -44,7 +44,7 @@ class AdminController extends BaseController {
 		$result = null;
 
 		try {
-			$result = DB::select('select * from mokjangs where mokjang_name = ?', array($mokjangName));
+			$result = DB::select('select * from report_mokjangs where mokjang_name = ?', array($mokjangName));
 		} catch(Exception $e) {
 			$errorCode = $e->getCode();
 			Log::debug("Wait! Are you here?: $errorCode");

@@ -11,7 +11,7 @@ class CreateReportTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('report', function($table)
+		Schema::create('report_meeting', function($table)
 		{
 			$table->increments('id');
 			$table->integer('mokjang_id');

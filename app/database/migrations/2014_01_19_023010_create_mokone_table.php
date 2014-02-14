@@ -12,7 +12,7 @@ class CreateMokoneTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('mokone', function($table)
+		Schema::create('report_mokone', function($table)
 		{
 			$table->increments('id');
 			$table->string('group_name');

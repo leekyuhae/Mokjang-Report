@@ -11,7 +11,7 @@ class CreateMokjangTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('mokjangs', function($table)
+		Schema::create('report_mokjangs', function($table)
 		{
 			$table->increments('id');
 			$table->string('mokjang_name');

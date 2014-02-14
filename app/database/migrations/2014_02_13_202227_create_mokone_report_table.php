@@ -12,7 +12,7 @@ class CreateMokoneReportTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('mokone_weekly', function($table)
+		Schema::create('report_mokone_weekly', function($table)
 		{
 			$table->increments('id');
 			$table->integer('mokone_id');

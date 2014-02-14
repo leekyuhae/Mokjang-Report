@@ -14,7 +14,7 @@ class UserController extends BaseController {
 
 		// Get mokjang_name and group_name for the report.
 		try {
-			$mokjangInfo = DB::select('select * from mokjangs where mokja_id=(?)', array($mokjaId));
+			$mokjangInfo = DB::select('select * from report_mokjangs where mokja_id=(?)', array($mokjaId));
 		} catch (Exception $e) {
 			Log::error("Error while running DB query in UserController for mokjangInfo: $e");
 		}
@@ -40,7 +40,7 @@ class UserController extends BaseController {
 		// Get all mokone registered for this mokjang.
 		$mokoneList = null;
 		try {
-			$mokoneList = DB::select('select * from mokone where mokjang_name=(?)', array($mokjangName));
+			$mokoneList = DB::select('select * from report_mokone where mokjang_name=(?)', array($mokjangName));
 		} catch (Exception $e) {
 			Log::error("Error while running DB query in UserController for getMokones: $e");
 		}
@@ -60,7 +60,7 @@ class UserController extends BaseController {
 
 		// Insert or replace into the report db this current report. 
 		try {
-			$result = DB::insert('replace into report
+			$result = DB::insert('replace into report_meeting
 				(
 					mokjang_id,
 					week,
@@ -80,7 +80,7 @@ class UserController extends BaseController {
 		$mokoneIds = null;
 		// Get all Ids of mokones belong to this mokjang
 		try {
-			$mokoneIds = DB::select('select id from mokone where mokjang_name=(?)', array($mokjangName));
+			$mokoneIds = DB::select('select id from report_mokone where mokjang_name=(?)', array($mokjangName));
 		} catch (Exception $e) {
 			Log::error("Error while running DB query in UserController for postProcessForm:\n $e");
 		}
@@ -118,7 +118,7 @@ class UserController extends BaseController {
 
 			if ($doReport) {
 				try{
-					DB::insert('replace into mokone_weekly
+					DB::insert('replace into report_mokone_weekly
 						(
 							mokone_id,
 							week,
@@ -148,7 +148,7 @@ class UserController extends BaseController {
 
 		$deleteResult = 0;
 		try {
-			$deleteResult = DB::delete('delete from mokone where id=(?)', array($id));
+			$deleteResult = DB::delete('delete from report_mokone where id=(?)', array($id));
 		} catch (Exception $e) {
 			Log::error("Error while running DB query in UserController for postDeleteMokone: $e");
 		}
@@ -180,7 +180,7 @@ class UserController extends BaseController {
 		}
 
 		try {
-			$result = DB::insert('insert into mokone 
+			$result = DB::insert('insert into report_mokone 
 				(
 					marital_status, 
 					mokjang_name, 
@@ -198,7 +198,7 @@ class UserController extends BaseController {
 		} catch (Exception $e) {
 
 		}
-		$idObject = DB::select('select MAX(id) from mokone');
+		$idObject = DB::select('select MAX(id) from report_mokone');
 		$id = current($idObject)->{'MAX(id)'};
 
 		return Response::json(array('status' => $result,
