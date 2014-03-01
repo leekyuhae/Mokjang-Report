@@ -27,7 +27,7 @@ class GenericUser implements UserInterface {
 	 */
 	public function getAuthIdentifier()
 	{
-		return $this->attributes['id'];
+		return $this->attributes['member_srl'];
 	}
 
 	/**

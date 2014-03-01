@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
+
 class CreateReportTerm extends Migration {
 
 	/**
