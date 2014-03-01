@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReportMokjangTable extends Migration {
+class CreateReportMokjang extends Migration {
 
 	/**
 	 * Run the migrations.
