@@ -64,7 +64,7 @@
   	</style>
 	<body>
 		<div id="login-box">
-			<div class="title"> 로그인 </div>
+			<div class="title"> 목장보고 </div>
 			<div class="info-text"> 교회 홈페이지 아이디와 패스워드로 로그인하세요. </div>
 			<form id="login-form" action="home/login" method="post">
 				<div class="input-container">
