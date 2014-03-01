@@ -5,6 +5,7 @@ use Illuminate\Events\Dispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Session\Store as SessionStore;
 use Symfony\Component\HttpFoundation\Response;
+use Log;
 
 class Guard {
 
@@ -285,8 +286,11 @@ class Guard {
 		// fact valid we'll log the users into the application and return true.
 		if ($user instanceof UserInterface)
 		{
+			Log::info("First step:: $user");
 			if ($this->provider->validateCredentials($user, $credentials))
 			{
+				Log::info("Second step.:: $login");
+
 				if ($login) $this->login($user, $remember);
 
 				return true;

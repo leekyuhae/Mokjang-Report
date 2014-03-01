@@ -6,11 +6,13 @@
 		<script src="jQuery/jquery-1.10.2.js"></script>
 		<script src="dateJS/date-en-US.min.js"></script>
   		<script src="jQuery/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.js"></script>
-  		<script src="iCheck/icheck.js"></script>
   		<script src="autosize/jquery.autosize.js"></script>
-  		<link rel="stylesheet" href="iCheck/skins/minimal/minimal.css">
+  		<script src="bootstrap-3.1.1/js/bootstrap.js"></script>
+  		<script src="bootstrap-3.1.1/js/bootstrap-datepicker.js"></script>
+  		<link rel="stylesheet" href="bootstrap-3.1.1/css/bootstrap-datepicker.css">
+		<link rel="stylesheet" href="bootstrap-3.1.1/css/bootstrap.css">
   		<link rel="stylesheet" href="jQuery/jquery-ui-1.10.4.custom/css/mokjang-theme/jquery-ui-1.10.4.custom.css">
-  		<link rel="stylesheet" href="styles.css">
+  		<link rel="stylesheet" href="user-styles.css">
   		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans">
   	</head>
   	<script type="text/javascript">
@@ -26,111 +28,51 @@
 				title = husbandName + " / " + wifeName;
 			}
 
-			var mokoneAccordion = $('<div class="accordion" id="accordion' + id +'">' 
-										+ '<h3 class="accordion-header">' 
-											+ '<div class="accordion-header-left inline-block" id="accordion-header-left' + id + '">'
-												+ '<div class="accordion-control-button-div inline-block">'
-													+ '<button type="button" class="accordion-control-button"' 
-														+ ' id="accordion-control-button' + id + '">'
+			var mokoneAccordion = $('<div class="panel-group" id="accordion' + id +'">' 
+										+ '<div class="panel panel-default">' 
+											+ '<div class="panel-heading">'
+												+ '<h4 class="panel-title">'
+													+ '<a data-toggle="collapse" data-parent="#accordion' + id + '" href="#collapse' + id +'">' + title + '</a>'
+													+ '<span class="label label-danger mokone-label" id="prayer-text' + id + '">기도</span>' 
+													+ '<span class="label label-warning mokone-label" id="news-text' + id + '">소식</span>'
+													+ '<span class="label label-success mokone-label" id="pastor-visit-text' + id + '">심방</span>'
+													+ '<span class="label label-primary mokone-label" id="attended-text' + id + '">참석</span>'
+													+ '<button type="button" class="btn btn-danger btn-xs mokone-delete-button"'
+														+ ' id ="mokone-delete-button' + id + '" data-toggle="modal" data-target="#delete-confirm-modal">'
+														+ '<span class="glyphicon glyphicon-remove"></span>'
 													+ '</button>'
+												+ '</h4>'
+											+ '</div>'
+
+										+ '<div id="collapse' + id + '" class="panel-collapse collapse">'
+											+ '<div class="panel-body">'
+												+ '<div class="accordion-checkbox-div">'
+													+ '<div class="margin-right inline-block">'
+														+ '<label for="attendance' + id + '">모임 참석 </label>'
+														+ '<input type="checkbox" name="attendance' + id + '" id="attendance' + id + '">'
+													+ '</div>'
+													+ '<div class="inline-block">'
+														+ '<label for="pastor-visit' + id + '">심방 요청</label>'
+														+ '<input type="checkbox" name="pastor-visit' + id + '" id="pastor-visit' + id + '">'
+													+ '</div>'
 												+ '</div>'
-												+ '<div class="attendance-mokone-name inline-block">' + title + '</div>'
-												+ '<div class="attended-text inline-block" id="attended-text' + id + '">[참석]</div>'
-												+ '<div class="pastor-visit-text inline-block" id="pastor-visit-text' + id + '">[심방]</div>'
-												+ '<div class="news-text inline-block" id="news-text' + id + '">[소식]</div>'
-												+ '<div class="prayer-text inline-block" id="prayer-text' + id + '">[기도]</div>' 
+												+ '<div class="accordion-textarea-label"><label for="news' + id + '" class="inline-block">목원 소식: </label></br></div>'
+												+ '<div class="accordion-textarea"><textarea name="news' + id + '" id="news' + id + '" '
+													+ 'class="text ui-widget-content ui-corner-all"></textarea></div>'
+												+ '<div class="accordion-textarea-label"><label for="prayer-request' + id + '" class="inline-block">기도 제목: </label></div>'
+												+ '<div class="accordion-textarea"><textarea name="prayer-request' + id + '" id="prayer-request' + id + '" ' 
+													+ 'class="text ui-widget-content ui-corner-all"></textarea></div>'
 											+ '</div>'
-											+ '<div class="accordion-delete-button-div inline-block">'
-													+ '<button type="button" class="accordion-delete-button"'
-														+ ' id ="accordion-delete-button' + id + '">'
-													+ '</button>'
-											+ '</div>'
-										+ '</h3>'
-										+ '<div class="accordion-body">'
-											+ '<div class="accordion-checkbox-div">'
-												+ '<label for="attendance' + id + '" class="inline-block">모임 참석 </label>'
-												+ '<input type="checkbox" class="attendance-checkbox"' 
-													+ 'name="attendance' + id + '" id="attendance' + id + '">'
-												+ '<label for="pastor-visit' + id + '" class="inline-block">심방 요청</label>'
-												+ '<input type="checkbox" name="pastor-visit' + id + '" id="pastor-visit' + id + '">'
-											+ '</div>'
-											+ '<div class="accordion-textarea-label"><label for="news' + id + '" class="inline-block">목원 소식: </label></br></div>'
-											+ '<div class="accordion-textarea"><textarea name="news' + id + '" id="news' + id + '" '
-												+ 'class="text ui-widget-content ui-corner-all"></textarea></div>'
-											+ '<div class="accordion-textarea-label"><label for="prayer-request' + id + '" class="inline-block">기도 제목: </label></div>'
-											+ '<div class="accordion-textarea"><textarea name="prayer-request' + id + '" id="prayer-request' + id + '" ' 
-												+ 'class="text ui-widget-content ui-corner-all"></textarea></div>'
 								   		+ '</div>'
 									+ '</div>');
 
 			$('#attended-mokone-report-box').append(mokoneAccordion);
 
-			$('#accordion-header-left'+id).css({
-				"width": "94%",
+			$('#mokone-delete-button' + id).hide();
+
+			$('#mokone-delete-button' + id).click(function() {
+				$('#delete-confirm-modal').data('id', id);
 			});
-
-			$('#accordion-control-button'+id).css({
-				"font-size": "70%",
-				"height": "25px",
-			    "width": "25px",
-				"margin-right": "10px"
-			});
-
-			$( "#accordion-delete-button"+id).css({
-				"font-size": "70%",
-				"height": "25px",
-				"width": "25px",
-			});
-
-			$(function() {
-				$('#accordion' + id).accordion({
-					collapsible:true,
-					icons: null,
-					disabled:true,
-					heightStyle: "content",
-					active:false
-				});
-			});
-
-			$('#accordion-control-button'+id).button({
-				text: false,
-				label: "open",
-      			icons: {
-        			primary: "ui-icon-triangle-1-e"
-      			}
-			}).click(function() {
-      			var options;
-      			if ( $( this ).text() === "open" ) {
-      				$(this).closest('.accordion').accordion("option", "active", 0);
-        			options = {
-          				label: "close",
-          				icons: {
-            				primary: "ui-icon-triangle-1-s"
-          				}
-        			};
-      			} else {
-      				$(this).closest('.accordion').accordion("option", "active", false);
-        			options = {
-          				label: "open",
-          				icons: {
-            				primary: "ui-icon-triangle-1-e"
-          				}
-        			};
-      			}
-      			$( this ).button( "option", options );
-    		});	
-
-			$( '#accordion-delete-button'+id).button({
-				text: false,
-				icons: {
-	        		primary: "ui-icon-circle-close"
-	        	}
-			}).click(function() {
-				$('#delete-confirmation-form').data("id", id);
-				$('#delete-confirmation-form').dialog('open');
-			});
-
-			$( ".accordion-delete-button" ).hide();
 
 			$('#attended-text' + id).hide();
 
@@ -184,7 +126,7 @@
   		$(document).ready(function() {
 			var mokjangName = "<?php echo $mokjangName?>";
 			var groupName = "<?php echo $groupName?>";
-			var titleString = $('<div>' + mokjangName + '목장 모임 보고서</div>');
+			var titleString = mokjangName + '목장 모임';
 			var mokoneCount = 0;
 
 			$.getJSON( "user/mokones", 
@@ -192,8 +134,7 @@
 					mokjangName: mokjangName
 				}, function(data) {
 					if(data.mokoneList != "") {
-						$('#no-attended-mokone-info-text').hide();
-						$('#attended-mokone-info-text').show();
+						$('#no-registered-mokone-text').hide();
 
 						$.each(data, function(key,val) {
 							$.each(val,function(key,val) {
@@ -203,26 +144,30 @@
 							});
 						});
 					} else {
-						$('#no-attended-mokone-info-text').show();
-						$('#attended-mokone-info-text').hide();
+						$('#no-registered-mokone-text').show();
 					}
 				}
 			);
-			$(this).find('.report-title').append(titleString);
 
+			if(mokoneCount == 0) {
+				$('#delete-mokone').hide();
+			}
 			// Getting the currentWeek and making currentWeek String
 			var currentWeekText = "The week of " + Date.parse("monday").toString('MMMM dS, yyyy');
-			var currentWeekHTML = $('<i>' + currentWeekText + '</i>');
-			$(this).find('.report-time').append(currentWeekHTML);
+
+			var pageHeader = $('<h2><b>' + titleString + '</b><br><small><i>' + currentWeekText + '</i></small>' + '</h2>');
+			$('#page-header').append(pageHeader);
 
 			var thisMonday = Date.parse("monday");
 			var thisSunday = Date.parse("monday").add(6).days();
 
 
 			// Adding jQuery DatePicker for meetingTime
-			$(function() {
-    			$( "#datepicker" ).datepicker({ minDate: thisMonday, maxDate: thisSunday });
-  			});
+			$( "#datepicker" ).datepicker({
+				autoclose: true,
+				startDate: thisMonday, 
+				endDate: thisSunday 
+			});
 
 			// This is a button for adding a mokone
   			$( "#participant-add-family" )
@@ -232,137 +177,127 @@
 			   	}
 			);
 
+			$('#delete-button-box').hide();
 
 			// This is 목원줄이기 button functionality
-			$( "#participant-delete-family" )
-			    .button()
+			$( "#delete-mokone" )
 			    .click(function() {
-			    	if ( this.checked ) {
-			    		$( ".accordion-delete-button").show();
-			    		
-			    	}
-			    	else {
-			    		$( ".accordion-delete-button").hide();
-			    	}
+			    	$('.mokone-delete-button').show();
+			    	$('#delete-button-box').show();
+			    	$('#normal-button-box').hide();
 				}
 			);
 
-			$( ".add-form" ).dialog({
-		      	autoOpen: false,
-		     	height: 330,
-		      	width: 220,
-		      	modal: true,
-		      	buttons: {
-			        "확인": function() {
-				  		var mokoneName = $("#mokoneName").val();
-				  		var husbandName = $("#husbandName").val();
-				  		var wifeName = $("#wifeName").val();
-				  		var status = "";
-				  		var sex="";
-				  		var statusCheckSingle = $('#status-single:checked').length;
-				  		var statusSex = $('#sex-male:checked').length;
+			$('#delete-done-mokone')
+				.click(function() {
+					$('.mokone-delete-button').hide();
+					$('#normal-button-box').show();
+					$('#delete-button-box').hide();
+				});
 
-				  		if(statusSex > 0) {
-				  			sex = "male";
-				  		} else {
-				  			sex = "female";
-				  		}
-
-				  		if(statusCheckSingle > 0) {
-				  			status = "single";
-				  			console.log(mokoneName, sex);
-				  		} else {
-				  			status = "married";
-				  			console.log(husbandName, wifeName);
-				  		}
-				  		
-						$.post("{{url('report/user/add-mokone')}}", 
-							{ 
-								status: status,
-								mokoneName: mokoneName,
-								husbandName: husbandName,
-								wifeName: wifeName,
-								mokjangName: mokjangName,
-								groupName: groupName,
-								sex: sex
-							}, 
-							function(data) {
-								if(data.status == true)
-								{
-									mokoneCount++;
-									if (mokoneCount == 1) {
-										$( '#no-attended-mokone-info-text' ).hide();
-										$( '#attended-mokone-info-text' ).show();
-									}
-
-									if (status == "single")
-										addMokoneAccordion(data.id, mokoneName, "");
-									else
-										addMokoneAccordion(data.id, husbandName, wifeName);											
-								}
-								else
-								{
-									console.log("oh... no good");
-								}
+			$('#create-confirm-button').click(function() {
+				var mokoneName = $("#mokoneName").val();
+		  		var husbandName = $("#husbandName").val();
+		  		var wifeName = $("#wifeName").val();
+		  		var status = $('#register-mokone-modal').data('status');
+		  		var sex=$('#register-mokone-modal').data('sex');
+		  		
+				$.post("{{url('report/user/add-mokone')}}", 
+					{ 
+						mokoneName: mokoneName,
+						husbandName: husbandName,
+						wifeName: wifeName,
+						mokjangName: mokjangName,
+						groupName: groupName,
+						status: status,
+						sex: sex
+					}, 
+					function(data) {
+						if(data.status == true)
+						{
+							mokoneCount++;
+							if (mokoneCount == 1) {
+								$('#no-registered-mokone-text').hide();
+								$('#delete-mokone').show();
 							}
-						);
 
-		            	$( this ).dialog( "close" );
-			        },
-			        "취소": function() {
-			          	$( this ).dialog( "close" );
-			        }
-		    	},
-		    	close: function() {
-		    	}
+							if (status == "single")
+								addMokoneAccordion(data.id, mokoneName, "");
+							else
+								addMokoneAccordion(data.id, husbandName, wifeName);
+
+						}
+						else
+						{
+							console.log("oh... no good");
+						}
+					}
+				);
+
+				$('#register-mokone-modal').modal('hide');
 			});
-
-			$( "#delete-confirmation-form" ).dialog({
-		      	autoOpen: false,
-		     	height: 180,
-		      	width: 250,
-		      	modal: true,
-		      	buttons: {
-			        "확인": function() {
-			        	var id = $(this).data("id");
-				  		$.post( "user/delete-mokone", {id: id}, function(data) {
-							if (data.result == 1) {
-								mokoneCount--;
-								if(mokoneCount == 0) {
-									$( '#no-attended-mokone-info-text' ).show();
-									$( '#attended-mokone-info-text' ).hide();
-								}
-
-								$( '#accordion' + id).hide();
-							}
-						});
-
-						$( this ).dialog( "close" );
-			        },
-			        "취소": function() {
-			          	$( this ).dialog( "close" );
-			        }
-		    	},
-		    	close: function() {
-		    	}
-			});
-			
-			$('.radio-married').on('ifChecked', function(event){
-				$('.family-form').show();
-  				$('.single-form').hide();
-			});
-
-			$('.radio-single').on('ifChecked', function(event){
+	
+			$('#button-single').click(function() {
+				$('#button-married').removeClass('active');
+				$(this).addClass('active');
+				$('.family-form').hide();
 				$('.single-form').show();
-  				$('.family-form').hide();
+				$('#register-mokone-modal').data('status', 'single');
 			});
 
-			$('.icheck-radio-minimal').iCheck({
-				checkboxClass: 'icheckbox_minimal',
-				radioClass: 'iradio_minimal'
+			$('#button-married').click(function() {
+				$('#button-single').removeClass('active');
+				$(this).addClass('active');
+				$('.family-form').show();
+				$('.single-form').hide();
+				$('#register-mokone-modal').data('status', 'married');
 			});
 
-			$('.radio-single').iCheck('check');
+			$('.family-form').hide();
+
+			$('#button-male').click(function() {
+				$(this).addClass('active');
+				$('#button-female').removeClass('active');
+				$('#register-mokone-modal').data('sex', 'male');
+			});
+
+			$('#button-female').click(function() {
+				$(this).addClass('active');
+				$('#button-male').removeClass('active');
+				$('#register-mokone-modal').data('sex', 'female');
+			});
+
+
+			$('#delete-confirm-button').click(function(){
+				var id = $('#delete-confirm-modal').data("id");
+
+		  		$.post( "user/delete-mokone", {id: id}, function(data) {
+					if (data.result == 1) {
+						mokoneCount--;
+						if(mokoneCount == 0) {
+							$('#no-registered-mokone-text').show();
+							$('#delete-mokone').hide();
+
+						}
+
+						$( '#accordion' + id).hide();
+					}
+				});
+
+				$('#delete-confirm-modal').modal('hide');
+			});
+
+			$('#create-mokone').click(function() {
+				$('#mokoneName').val("");
+				$('#husbandName').val("");
+				$('#wifeName').val("");
+				$('#button-single').addClass("active");
+				$('#button-married').removeClass("active");
+				$('#button-male').removeClass("active");
+				$('#button-female').removeClass("active");
+				$('#family-form').hide();
+				$('#single-form').show();
+			});
 
 			var mokjangId = "<?php echo $mokjangId?>";
 			$('#submit-button')
@@ -384,100 +319,118 @@
 						.appendTo('#report-form');
 
 					$('#report-form').submit();
-				});
+				}
+			);
+
 		});
+				
   	</script>
 
 	<body>
 		<div id="report-container">
-			<div id="report-title-box">
-				<div class="report-title"></div>
-				<div class="report-time"></div>
-				<div class="report-bar"></div>
+			<div id="page-header">
 			</div>
 
 			<div id="report-form-div">
 			  	<form id="report-form" action="user/process-form" method="post">
 			  		<fieldset> 
-			  			<div class="report-item-box">
+
+			  			<div class="report-item-box inline-block margin-right">
 					    	<label class="report-label" for="meetingDate">모임 날짜:</label>
 					    	<div class="report-text-short">
 					    		<input type="text" name="meetingDate" id="datepicker" class="text ui-widget-content ui-corner-all">
 					    	</div>
 				    	</div>
-				    	<div class="report-item-box add-margin-left-percent">
+				    	<div class="report-item-box inline-block">
 				    		<label id="report-label" for="meetingPlace">모임 장소:</label>
 				    		<div class="report-text-short">
 				    			<input type="text" name="meetingPlace" class="text ui-widget-content ui-corner-all">
 				    		</div>
 				    	</div>
-				    	<div id="participant-box">
-				    		<div id="participant-title">모임에 함께한 목원을 선택해주세요.</div>
-				    		
-				    		<div id="participant-tool-box">
-					    		<div id="participant-tool-text">다음 버튼을 눌러 새로온 목원을 추가하거나 떠난 목원을 지워주세요.</div>
-					    		<div class="participant-button"><button type="button" id="participant-add-family">목원늘리기</button></div>
-					    		<div class="participant-button"><input type="checkbox" id="participant-delete-family"><label for="participant-delete-family">목원줄이기</label></div>
-					    		<div class="add-form" title="목원 늘리기">
-								  	<form>
-								  		<div class="marital-status-radio-box">
-									  		<div class="icheck-radio-minimal radio-single inline-block">
-									  			<input type="radio" name="status" id="status-single" value="single">
-									  			<label class="radio-text">Single</label>
-									  		</div>
 
-									  		<div class="icheck-radio-minimal radio-married inline-block add-margin-left-percent">
-									  			<input type="radio" name="status" id="status-married" value="married">
-									  			<label class="radio-text">Married</label>
-									  		</div>
-								  		</div>
-								  		
-								  		<div class="family-form">
-									  		<fieldset>
-										    	<label for="husbandName">남편 이름:</label>
-										    	<input type="text" name="husbandName" id="husbandName" class="text ui-widget-content ui-corner-all">
-										    	<label for="wifeName">아내 이름:</label>
-										    	<input type="text" name="wifeName" id="wifeName" class="text ui-widget-content ui-corner-all">
-									  		</fieldset>
-								  		</div>
-								  		<div class="single-form">
-								  			<fieldset>
-										    	<label for="mokoneName">이름:</label>
-										    	<input type="text" name="mokoneName" id="mokoneName" class="text ui-widget-content ui-corner-all">
-										   		<div class="choose-sex inline-block">
-										    		<div class="icheck-radio-minimal inline-block">
-										  				<input type="radio" name="sex" id="sex-male" class="inline-block" value="single">
-										  				<label class="radio-text inline-block">남자</label>
-										  			</div>
-										  			<div class="icheck-radio-minimal inline-block add-margin-left-percent">
-										  				<input type="radio" name="sex" id="sex-female" class="inline-block" value="married">
-										  				<label class="radio-text inline-block">여자</label>
-										  			</div>
-										  		</div>
-									  		</fieldset>
-									  	</div>
-								  	</form>
-								</div>
-
-								<div id="delete-confirmation-form" title="목원지우기">
-								  	<form>
-								  		<fieldset>
-								  			<div><p>정말로 지우시겠습니까?</p></div>
-								  		</fieldset>
-								  	</form>
-								</div>
-
-					    	</div>
-					    	<div id="attended-mokone-report-box">
-					    		<div id="attended-mokone-info-text">지금까지 등록된 목원입니다.</div>
-					    		<div id="no-attended-mokone-info-text">지금까지 등록된 목원이 없습니다.</div>
-					    	</div>
-					    	<div id="end-bar"></div>
-					    	<div id="submit-button-box">
-					    		<div class="submit-button-div"><button type="submit" id="submit-button">보내기</button></div>	
-				    		</div>
+				    	<div id="attended-mokone-report-box">
+				    		<div id="mokone-box-header">등록된 목원:</div>
+				    		<div id="no-registered-mokone-text" class="panel panel-default">
+  								<div class="panel-heading">등록된 목원이 없습니다.</div>
+							</div>
+				    	</div>
+				    	<div id="end-bar"></div>
+				    	<div id="normal-button-box">
+				    		<button type="submit" id="submit-button" class="btn btn-primary">보내기</button>
+				    		<button type="button" id="create-mokone" class="btn btn-default" data-toggle="modal" data-target="#register-mokone-modal">새 목원 등록하기</button>
+				    		<button type="button" id="delete-mokone" class="btn btn-danger">떠난 목원 등록하기</button>
+			    		</div>
+			    		<div id="delete-button-box">
+    						<button type="button" id="delete-done-mokone" class="btn btn-primary">떠난 목원을 다 등록하였습니다</button>
+						</div>
 			  		</fieldset>
 			  	</form>
+			</div>
+		</div>
+
+		<div class="modal fade" id="delete-confirm-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" id="delete-confirm-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="delete-confirm-title">목원 줄이기</h4>
+					</div>
+					<div class="modal-body">
+						<p> 정말로 시스템에서 지우시겠습니까? </p>
+					</div>
+					<div class="modal-footer">
+						<button id="delete-confirm-button" type="button" class="btn btn-danger">확인</button>
+						<button id="delete-cancel-button" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="register-mokone-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" id="register-mokone-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="delete-confirm-title">목원 등록하기</h4>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="btn-group btn-group-justified margin-bottom">
+								<div class="btn-group">
+									<button type="button" id="button-single" class="btn btn-primary active">싱글</button>
+								</div>
+								<div class="btn-group">
+									<button type="button" id="button-married" class="btn btn-primary">부부</button>
+								</div>
+							</div>
+
+							<div class="single-form">
+								<fieldset>
+									<label for="mokoneName" class="inline-block">이름:</label>
+									<input type="text" name="mokoneName" id="mokoneName" class="text ui-widget-content ui-corner-all">
+										<div class="btn-group">
+											<button type="button" id="button-male" class="btn btn-default">남자</button>
+											<button type="button" id="button-female" class="btn btn-default">여자</button>
+										</div>
+
+								</fieldset>
+							</div>
+
+							<div class="family-form">
+								<fieldset>
+									<label for="husbandName">남편 이름:</label>
+									<input type="text" name="husbandName" id="husbandName" class="text ui-widget-content ui-corner-all">
+									<label for="wifeName">아내 이름:</label>
+									<input type="text" name="wifeName" id="wifeName" class="text ui-widget-content ui-corner-all">
+								</fieldset>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button id="create-confirm-button" type="button" class="btn btn-primary">확인</button>
+						<button id="create-cancel-button" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>

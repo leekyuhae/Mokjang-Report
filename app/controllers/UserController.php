@@ -4,7 +4,10 @@ class UserController extends BaseController {
 	public $restful = true;
 
 	public function getIndex() {
-		$mokjaId = Input::get('mokjaId');
+		if(!Auth::check()) 
+			return View::make('no_user_id');
+		
+		$mokjaId = Auth::user()->user_id;
 		$mokjangInfo = null;
 
 		// Check if mokjaId is given with get reqeust. If not, return no_user_id error page.
@@ -14,7 +17,7 @@ class UserController extends BaseController {
 
 		// Get mokjang_name and group_name for the report.
 		try {
-			$mokjangInfo = DB::select('select * from report_mokjangs where mokja_id=(?)', array($mokjaId));
+			$mokjangInfo = DB::select('select * from report_mokjang where mokja_id=(?)', array($mokjaId));
 		} catch (Exception $e) {
 			Log::error("Error while running DB query in UserController for mokjangInfo: $e");
 		}
@@ -85,9 +88,9 @@ class UserController extends BaseController {
 			Log::error("Error while running DB query in UserController for postProcessForm:\n $e");
 		}
 
-		foreach ($_POST as $key => $value) {
-			echo "$key: $value <br>";
-		}
+		//foreach ($_POST as $key => $value) {
+		//	echo "$key: $value <br>";
+		//}
 
 		foreach ($mokoneIds as $key => $value) {
 			$id = $value->id;
@@ -140,6 +143,8 @@ class UserController extends BaseController {
 				}
 			}
 		}
+
+		return View::make('thank_you');
 
 	}
 

@@ -15,5 +15,5 @@ Route::controller('report/admin', 'AdminController');
 
 Route::controller('report/user', 'UserController');
 
-Route::controller('report', 'HomeController');
+Route::controller('report/home', 'HomeController');
 
