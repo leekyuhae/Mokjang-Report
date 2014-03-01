@@ -1,0 +1,92 @@
+#report-container {
+	width: 550px;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+	-moz-box-shadow: 5px 5px 5px #888;
+	-webkit-box-shadow: 5px 5px 5px #888;
+	box-shadow: 5px 5px 5px #888;
+	font-size: 110%;
+}
+.tab-pane {
+	padding: 20px;
+}
+.font-size-100 {
+	font-size: 100%;
+}
+.margin-right {
+	margin-right: 10px;
+}
+.font-size-130 {
+	font-size: 150%;
+	padding-left: 20px;
+}
+.margin-top {
+	margin-top: 20px;
+}
+label {
+	font-weight: normal;
+}
+select {
+	width: 150px;
+	height: 30px;
+	padding: 2px;
+	border-color: #9F9F9F;
+}
+input.text { margin-bottom:12px; width:95%; padding: .4em; }
+fieldset { padding:0; border:0; margin-top:10px; }
+h1 { font-size: 1.2em; margin: .6em 0; }
+.ui-dialog .ui-state-error { padding: .3em; }
+div#mokjang_container { 
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+}
+.no-registered-mokjang {
+	padding: 2px;
+}
+.group-box {
+	padding: 4px;
+	margin-top: 4px;
+	margin-bottom: 16px;
+}
+.group-title {
+	padding-bottom: 4px;
+	border-bottom: 2px solid #A84D4D;
+}
+.group_container {
+	display: inline-block;
+	padding: 4px;
+}
+.mokjang_button {
+	margin: 4px;
+	display: inline-block;
+	float: left;
+}
+.mokjang_name {
+	padding: 2px;
+	text-align: center;
+}
+.mokja_name {
+	padding: 4px;
+	text-align: center;
+}
+.display-form-box {
+	padding: 4px;
+	margin-top: 5px;
+	margin-bottom: 14px;
+}
+.inline-block {
+	display: inline-block;
+}
+.display-label {
+	font-weight: bold;
+	color: #B2B2B2;
+	width: 45%;
+}
+.create-dialog {
+	width: 280px;
+}
+.display-dialog {
+	width: 250px;
+}
+#datepicker{z-index:1151;}

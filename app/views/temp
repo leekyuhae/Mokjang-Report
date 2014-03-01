@@ -1,0 +1,68 @@
+<div id="participant-title">모임에 함께한 목원을 선택해주세요.</div>
+				    		
+				    		<div class="panel panel-default">
+  								<div class="panel-heading">
+  									<h3 class="panel-title">목원 관리</h3>
+  								</div>
+  								<div class="panel-body bg-info">
+    								<div id="participant-tool-text">다음 버튼을 눌러 새로온 목원을 추가하거나 떠난 목원을 지워주세요.</div>
+					    			<button type="button" id="participant-add-family" class="btn btn-primary">목원늘리기</button>
+					    			<button type="button" id="participant-delete-family" class="btn btn-danger">목원줄이기</button>
+  								</div>
+							</div>
+
+				    		<div id="participant-tool-box">
+					    		<div id="participant-tool-text">다음 버튼을 눌러 새로온 목원을 추가하거나 떠난 목원을 지워주세요.</div>
+					    		<div class="participant-button"><button type="button" id="participant-add-family" class="btn btn-primary">목원늘리기</button></div>
+					    		<div class="participant-button"><button type="button" id="participant-delete-family" class="btn btn-danger">목원줄이기</button></div>
+					    		<div class="add-form" title="목원 늘리기">
+								  	<form>
+								  		<div class="marital-status-radio-box">
+									  		<div class="icheck-radio-minimal radio-single inline-block">
+									  			<input type="radio" name="status" id="status-single" value="single">
+									  			<label class="radio-text">Single</label>
+									  		</div>
+
+									  		<div class="icheck-radio-minimal radio-married inline-block add-margin-left-percent">
+									  			<input type="radio" name="status" id="status-married" value="married">
+									  			<label class="radio-text">Married</label>
+									  		</div>
+								  		</div>
+								  		
+								  		<div class="family-form">
+									  		<fieldset>
+										    	<label for="husbandName">남편 이름:</label>
+										    	<input type="text" name="husbandName" id="husbandName" class="text ui-widget-content ui-corner-all">
+										    	<label for="wifeName">아내 이름:</label>
+										    	<input type="text" name="wifeName" id="wifeName" class="text ui-widget-content ui-corner-all">
+									  		</fieldset>
+								  		</div>
+								  		<div class="single-form">
+								  			<fieldset>
+										    	<label for="mokoneName">이름:</label>
+										    	<input type="text" name="mokoneName" id="mokoneName" class="text ui-widget-content ui-corner-all">
+										   		<div class="choose-sex inline-block">
+										    		<div class="icheck-radio-minimal inline-block">
+										  				<input type="radio" name="sex" id="sex-male" class="inline-block" value="single">
+										  				<label class="radio-text inline-block">남자</label>
+										  			</div>
+										  			<div class="icheck-radio-minimal inline-block add-margin-left-percent">
+										  				<input type="radio" name="sex" id="sex-female" class="inline-block" value="married">
+										  				<label class="radio-text inline-block">여자</label>
+										  			</div>
+										  		</div>
+									  		</fieldset>
+									  	</div>
+								  	</form>
+								</div>
+
+								<div id="delete-confirmation-form" title="목원지우기">
+								  	<form>
+								  		<fieldset>
+								  			<div><p>정말로 지우시겠습니까?</p></div>
+								  		</fieldset>
+								  	</form>
+								</div>
+				    	<div id="participant-box">
+
+				    	</div>
