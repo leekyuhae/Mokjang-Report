@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMokjangTable extends Migration {
+class CreateReportMokjangTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,7 +11,7 @@ class CreateMokjangTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('report_mokjangs', function($table)
+		Schema::create('report_mokjang', function($table)
 		{
 			$table->increments('id');
 			$table->string('mokjang_name');
@@ -30,7 +30,7 @@ class CreateMokjangTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('report_mokjangs');
+		Schema::drop('report_mokjang');
 	}
 
 }

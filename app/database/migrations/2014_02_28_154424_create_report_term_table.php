@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReportTermTable extends Migration {
+class CreateReportTerm extends Migration {
 
 	/**
 	 * Run the migrations.

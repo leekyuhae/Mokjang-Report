@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReportTable extends Migration {
+class CreateReportMeeting extends Migration {
 
 	/**
 	 * Run the migrations.

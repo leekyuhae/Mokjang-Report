@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMokoneTable extends Migration {
+class CreateReportMokoneTable extends Migration {
 
 	/**
 	 * Run the migrations.

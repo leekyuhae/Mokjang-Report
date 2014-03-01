@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdminIdTable extends Migration {
+class CreateReportAdmin extends Migration {
 
 	/**
 	 * Run the migrations.
