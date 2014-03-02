@@ -128,6 +128,7 @@
 			var groupName = "<?php echo $groupName?>";
 			var titleString = mokjangName + '목장 모임';
 			var mokoneCount = 0;
+			$('#delete-mokone').hide();
 
 			$.getJSON( "user/mokones", 
 				{
@@ -143,15 +144,14 @@
 								mokoneCount++;
 							});
 						});
+
+						$('#delete-mokone').show();
 					} else {
 						$('#no-registered-mokone-text').show();
 					}
 				}
 			);
 
-			if(mokoneCount == 0) {
-				$('#delete-mokone').hide();
-			}
 			// Getting the currentWeek and making currentWeek String
 			var currentWeekText = "The week of " + Date.parse("monday").toString('MMMM dS, yyyy');
 

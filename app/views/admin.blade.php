@@ -16,28 +16,29 @@
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans">
 
 		<script type="text/javascript">
+		var pageNumber = 1;
 
-		/*
 		function buildTermTable() {
-			$('.term-table-row').remove();
-			$('.term-table-page-button').remove();
-
-			var pageNumber = 1;
-			var count = 0;
+			$('.term-table-page-all').remove();
+			$('.term-table-page-a').remove();
 
 			$.getJSON( "admin/all-terms", function(data) {
+				var count = 0;
+				var pageNumber = 1;
+				var totalNumRows = 1;
+
 				$.each(data, function(key,val) {
 					$.each(val,function(key,val) {
-
 						$('#term-table-header').after(
-							'<tr id="term-table-tr' + val.id +'" class="term-table-page' + pageNumber + ' term-table-row">'
+							'<tr id="term-table-row' + val.id +'" class="term-table-page' + pageNumber + ' term-table-page-all">'
+								+ '<td>' + (( (pageNumber - 1) * totalNumRows ) + count + 1) + '</td>'
 								+ '<td>' + val.term_name + '</td>'
 								+ '<td>' + val.starting_sunday + '</td>'
 								+ '<td>' + val.ending_sunday + '</td>'
 							+ '</tr>');
 
 
-						$('#term-table-tr' + val.id).click(function() {
+						$('#term-table-row' + val.id).click(function() {
 							$('#term-name').val(val.term_name);
 							$('#starting-sunday').val(val.starting_sunday);
 							$('#ending-sunday').val(val.ending_sunday);
@@ -52,20 +53,44 @@
 
 						count++;
 
-						if (count == 1) {
-							if(pageNumber != 1) {
-								$('.term-table-page'+pageNumber).hide();
-							}
+						if (count == totalNumRows) {
+							$('#term-table-pagination').append(
+								'<li>'
+									+ '<a href="#" id="term-table-page-a' + pageNumber +'" class="term-table-page-a">' 
+										+ pageNumber 
+									+ '</a>'
+								+ '</li>');
+
+							$('#term-table-page-a' + pageNumber).data('page', pageNumber);
+
+							$('#term-table-page-a' + pageNumber).click(function() {
+								var page = $(this).data('page');
+								$('.term-table-page-a').parent().removeClass('active');
+								$(this).parent().addClass('active');
+								$('.term-table-page-all').hide();
+								$('.term-table-page' + page).show();
+							});
+
 							count = 0;
 							pageNumber++;
 						}
 					});
 				});
 
-				return pageNumber;
-			};
+				if(count == 0 && pageNumber == 0) {
+					$('#no-terms-row').show();
+				} else {
+					$('#no-terms-row').hide();
+				}
+
+				if(pageNumber > 1) {
+					$('.term-table-page-all').hide();
+					$('.term-table-page1').show();
+					$('#term-table-pagination').show();
+					$('#term-table-page-a1').parent().addClass('active');
+				}
+			});
 		}
-		*/
 
 
 		function groupNameTranslator(groupName) {
@@ -403,52 +428,16 @@
 					.modal('show');
 			});
 
-			/*
-			pageNumber = buildTermTable();
 
+			buildTermTable();
 
-			$('#no-terms-row').hide();
-			console.log("here? " + pageNumber);
-
-			if( pageNumber > 2 ) {
-				console.log("here?!!");
-				if( count == 0) {
-					pageNumber--;
-				}
-
-				var page = 1;
-				while(page <= pageNumber) {
-					$('#term-table-pagination').append(
-						'<li>' 
-						+ '<a href="#" id="term-table-page-button' + page + '" class="term-table-page-button">' 
-						+ page 
-						+ '</a>'
-						+ '</li>'
-						);
-
-					page++;
-				}
-			}
-
-			for(var i=1;i<=pageNumber;i++) {
-				console.log(i);
-
-				$('#term-table-page-button'+i).click(function() {
-					var j = i;
-					console.log(j);
-				});
-			}
-			*/
-
-			$('#term-table-pagination').show();
+			$('#term-table-pagination').hide();
 
 			$( "#datepicker" ).datepicker({
 				autoclose: true,
 				daysOfWeekDisabled: "1,2,3,4,5,6",
 				format: "yyyy-mm-dd"
 			});
-
-			$('#term-table-page').hide();
 		});
 		
 
@@ -618,9 +607,10 @@
 
 				<table class="table table-hover margin-top">
 					<tr id="term-table-header" class="active">
+						<th>#</th>
 						<th>이름</th>
 						<th>시작하는 주</th>
-						<th data-toggle="tooltip">마지막 주</th>
+						<th>마지막 주</th>
 					</tr>
 					<tr id="no-terms-row">
 						<td colspan=3>등록된 기간이 없습니다.</td>
